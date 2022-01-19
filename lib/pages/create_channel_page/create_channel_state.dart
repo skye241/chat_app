@@ -9,3 +9,9 @@ class CreateChannelInitial extends CreateChannelState {
   final List<User> selectedUsers;
 
 }
+
+class CreateChannelSuccess extends CreateChannelState{
+  final Channel channel;
+
+  CreateChannelSuccess(this.channel);
+}

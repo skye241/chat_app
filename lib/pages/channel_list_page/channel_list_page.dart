@@ -11,6 +11,10 @@ class ChannelListPage extends StatefulWidget {
 
 class _ChannelListPageState extends State<ChannelListPage> {
   @override
+  void initState() {
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -20,18 +24,29 @@ class _ChannelListPageState extends State<ChannelListPage> {
           const Icon(Icons.qr_code),
           IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, 'addChannelPage');
+              Navigator.pushNamed(context, '/addChannelPage');
             },
               icon: Icon(Icons.add)),
         ],
       ),
       body: ChannelsBloc(
         child: ChannelListView(
+          loadingBuilder: (BuildContext context) {
+            return Container();
+          },
           filter:
               Filter.in_('members', [StreamChat.of(context).currentUser!.id]),
           sort: [SortOption('last_message_at')],
           limit: 20,
-          channelWidget: ChannelPage(),
+          onChannelTap: (Channel channel, Widget? widget) {
+            Navigator.pushNamed(context, '/channelPage', arguments: <String, dynamic> {
+              'channel': channel,
+            });
+          },
+          // channelWidget: ChannelPage(
+          //   channel: StreamChat.of(context).currentUser!.id,
+          // ),
+
         ),
       ),
     );

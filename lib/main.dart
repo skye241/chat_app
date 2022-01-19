@@ -93,29 +93,31 @@ MaterialPageRoute<dynamic> routeSettings(RouteSettings settings) {
         builder: (BuildContext context) => AuthenticationPage(),
         settings: const RouteSettings(name: '/'),
       );
-    case 'channelPage':
+    case '/channelPage':
       return MaterialPageRoute<dynamic>(
-        builder: (BuildContext context) => ChannelPage(),
-        settings: const RouteSettings(name: 'channelPage'),
+        builder: (BuildContext context) => ChannelPage(
+          channel: data['channel'] as Channel,
+        ),
+        settings: const RouteSettings(name: '/channelPage'),
       );
-    case 'detailPage':
+    case '/detailPage':
       return MaterialPageRoute<dynamic>(
         builder: (BuildContext context) => Scaffold(),
-        settings: const RouteSettings(name: 'detailPage'),
+        settings: const RouteSettings(name: '/detailPage'),
       );
-      case 'channelListPage':
+      case '/channelListPage':
       return MaterialPageRoute<dynamic>(
         builder: (BuildContext context) => const ChannelListPage(),
-        settings: const RouteSettings(name: 'channelListPage'),
-      );    case 'addChannelPage':
+        settings: const RouteSettings(name: '/channelListPage'),
+      );    case '/addChannelPage':
       return MaterialPageRoute<dynamic>(
         builder: (BuildContext context) => const CreateChannelPage(),
-        settings: const RouteSettings(name: 'addChannelPage'),
+        settings: const RouteSettings(name: '/addChannelPage'),
       );
     default:
       return MaterialPageRoute<dynamic>(
         builder: (BuildContext context) => Scaffold(),
-        settings: const RouteSettings(name: 'detailPage'),
+        settings: const RouteSettings(name: '/detailPage'),
       );
   }
 }

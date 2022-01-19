@@ -8,8 +8,6 @@ class AuthInitial extends AuthState {}
 class AuthShowLoading extends AuthState {}
 
 class AuthSuccess extends AuthState {
-  AuthSuccess(this.channel);
 
-  final Channel channel;
 
 }

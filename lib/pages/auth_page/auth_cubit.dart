@@ -9,16 +9,12 @@ part 'auth_state.dart';
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitial());
 
-  Future<void> connectUser (String id) async {
+  Future<void> connectUser (User user) async {
     emit(AuthShowLoading());
     await client.connectUser(
-        User(id: id, name: id),
-        client.devToken(id).rawValue
+       user,
+        client.devToken(user.id).rawValue
     );
-    final channel = client.channel('messaging', id: 'newChannel');
-
-
-    await channel.watch();
-    emit(AuthSuccess(channel));
+    emit(AuthSuccess());
   }
 }

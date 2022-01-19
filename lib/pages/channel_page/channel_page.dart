@@ -21,35 +21,38 @@ class _ChannelPageState extends State<ChannelPage> {
   }
   @override
   Widget build(BuildContext context) {
-    return StreamChannel(
-      channel: widget.channel,
-      child: GestureDetector(
-        onTap: () => FocusScope.of(context).unfocus(),
-        child: Scaffold(
-          appBar: AppBar(
-            elevation: 0,
-            title: Text(widget.channel.name??'', style: const TextStyle(color: Colors.white),),
-            backgroundColor: AppColor.primaryColor,
-            leading: IconButton(
-              onPressed: () {
-                Navigator.popAndPushNamed(context, '/channelListPage');
-              },
-              icon: const Icon(Icons.arrow_back_ios, color: Colors.white,),
-            ),
-          ),
-          body: Column(
-            children: <Widget>[
-              Expanded(
-                child: MessageListView(
-                  threadBuilder: (_, parentMessage) {
-                    return ThreadPage(
-                      parent: parentMessage,
-                    );
-                  },
-                ),
+    return Scaffold(
+      body: StreamChannel(
+        channel: widget.channel,
+        showLoading: true,
+        child: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: Scaffold(
+            appBar: AppBar(
+              elevation: 0,
+              title: Text(widget.channel.name??'', style: const TextStyle(color: Colors.white),),
+              backgroundColor: AppColor.primaryColor,
+              leading: IconButton(
+                onPressed: () {
+                  Navigator.popAndPushNamed(context, '/channelListPage');
+                },
+                icon: const Icon(Icons.arrow_back_ios, color: Colors.white,),
               ),
-              MessageInput(),
-            ],
+            ),
+            body: Column(
+              children: <Widget>[
+                Expanded(
+                  child: MessageListView(
+                    threadBuilder: (_, parentMessage) {
+                      return ThreadPage(
+                        parent: parentMessage,
+                      );
+                    },
+                  ),
+                ),
+                MessageInput(),
+              ],
+            ),
           ),
         ),
       ),

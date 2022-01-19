@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       onGenerateRoute: routeSettings,
       initialRoute: '/',
-      theme: ThemeData(primaryColor: const Color(0xff008fe5)),
+      theme: ThemeData(primaryColor: const Color(0xff008fe5), appBarTheme: AppBarTheme(color: Color(0xff008fe5))),
       builder: (context, widget) {
         return StreamChat(
           client: client,
